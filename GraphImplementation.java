@@ -13,5 +13,6 @@ public class GraphImplementation implements GraphInterface {
 
     public void addValue(int value){
         value_arr[curr_index] = value;
+        curr_index++;
     }
 }

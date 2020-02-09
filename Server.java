@@ -11,7 +11,7 @@ public class Server extends GraphImplementation{
             GraphImplementation graph_obj = new GraphImplementation();
 
             GraphInterface stub = (GraphInterface) UnicastRemoteObject.exportObject(graph_obj, 0);
-            Registry registry = LocateRegistry.getRegistry(null);
+            Registry registry = LocateRegistry.getRegistry(Integer.parseInt(args[0]));
             registry.bind("GraphInterface", stub);
             System.out.println("Server Ready");
 
