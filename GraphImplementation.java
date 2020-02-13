@@ -1,19 +1,18 @@
+import java.util.*;
 public class GraphImplementation implements GraphInterface {
-    
-    int value_arr[] = new int[10];
-    int curr_index = 0;
 
-    public int getValue(int index){
-        return value_arr[index];
+    Map <String, WeightedGraph.Graph> all_graphs = new HashMap <String, WeightedGraph.Graph>();
+    public void add_graph(String id, int n){
+        all_graphs.put(id, new WeightedGraph.Graph(n));
     }
 
-    public void updateValue(int index){
-        value_arr[index]++;
+    public void add_edge(String id, int s, int d, int w){
+        WeightedGraph.Graph g = all_graphs.get(id);
+        g.addEdge(s, d, w);
     }
 
-    public void addValue(int value){
-        value_arr[curr_index] = value;
-        curr_index++;
-        System.out.println(curr_index);
+    public int get_mst(String id){
+        WeightedGraph.Graph g = all_graphs.get(id);
+        return g.mst();
     }
 }

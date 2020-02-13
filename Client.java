@@ -16,18 +16,21 @@ public class Client{
             Scanner input_obj = new Scanner(System.in);
             do  {
                 input_option = input_obj.next();
-                if (input_option.equals("add")){
-                    int value = Integer.parseInt(input_obj.next());
-                    stub.addValue(value);
+                if (input_option.equals("add_graph")){
+                    String id = input_obj.next();
+                    int num_vert = Integer.parseInt(input_obj.next());
+                    stub.add_graph(id, num_vert);
                 }
-                else if (input_option.equals("update")){
-                    int index = Integer.parseInt(input_obj.next());
-                    stub.updateValue(index);
+                else if (input_option.equals("add_edge")){
+                    String id = input_obj.next();
+                    int s = Integer.parseInt(input_obj.next());
+                    int d = Integer.parseInt(input_obj.next());
+                    int w = Integer.parseInt(input_obj.next());
+                    stub.add_edge(id, s, d, w);
                 }
-                else if (input_option.equals("get")){
-                    int index = Integer.parseInt(input_obj.next());
-                    System.out.println(index);
-                    System.out.println(stub.getValue(index));
+                else if (input_option.equals("get_mst")){
+                    String id = input_obj.next();
+                    System.out.println(stub.get_mst(id));
                 }
             } while (! input_option.equals("e"));
 
