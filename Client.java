@@ -1,6 +1,7 @@
 import java.rmi.registry.LocateRegistry; 
 import java.rmi.registry.Registry;
 import java.util.Scanner;
+import java.io.*;
 
 public class Client{
     public Client() {}
@@ -13,26 +14,30 @@ public class Client{
             String input_option = new String("start");
             String exit = new String("e");
 
-            Scanner input_obj = new Scanner(System.in);
-            do  {
-                input_option = input_obj.next();
-                if (input_option.equals("add_graph")){
-                    String id = input_obj.next();
-                    int num_vert = Integer.parseInt(input_obj.next());
+            
+            String line;
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            
+            while ((line = br.readLine()) != null) {
+                String[] splitstr = line.trim().split("\\s+");
+
+                if (splitstr[0].equals("add_graph")){
+                    String id = splitstr[1];
+                    int num_vert = Integer.parseInt(splitstr[2]);
                     stub.add_graph(id, num_vert);
                 }
-                else if (input_option.equals("add_edge")){
-                    String id = input_obj.next();
-                    int s = Integer.parseInt(input_obj.next());
-                    int d = Integer.parseInt(input_obj.next());
-                    int w = Integer.parseInt(input_obj.next());
+                else if (splitstr[0].equals("add_edge")){
+                    String id = splitstr[1];
+                    int s = Integer.parseInt(splitstr[2]);
+                    int d = Integer.parseInt(splitstr[3]);
+                    int w = Integer.parseInt(splitstr[4]);
                     stub.add_edge(id, s, d, w);
                 }
-                else if (input_option.equals("get_mst")){
-                    String id = input_obj.next();
+                else if (splitstr[0].equals("get_mst")){
+                    String id = splitstr[1];
                     System.out.println(stub.get_mst(id));
                 }
-            } while (! input_option.equals("e"));
+            }
 
         } catch (Exception e){
             System.err.println("Client Exception: " + e.toString());
