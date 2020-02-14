@@ -13,7 +13,6 @@ public class Server extends GraphImplementation{
             GraphInterface stub = (GraphInterface) UnicastRemoteObject.exportObject(graph_obj, 0);
             Registry registry = LocateRegistry.getRegistry(Integer.parseInt(args[0]));
             registry.bind("GraphInterface", stub);
-            System.out.println("Server Ready");
 
         } catch (Exception e){
             System.err.println("Server exception: "+ e.toString());
